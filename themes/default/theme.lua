@@ -11,8 +11,6 @@ theme.bg_focus      = "#000000"
 theme.bg_urgent     = "#aa0000"
 theme.bg_minimize   = "#222222"
 
---theme.fg_normal     = "#8DB600"
---theme.fg_focus      = "#8DB600"
 theme.fg_normal 	= "#aa0000"
 theme.fg_focus 		= theme.fg_normal
 theme.fg_urgent     = "#ffffff"
@@ -20,7 +18,7 @@ theme.fg_minimize   = "#555555"
 
 theme.border_width  = "1"
 theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
+theme.border_focus  = "#aa0000"
 theme.border_marked = "#91231c"
 
 -- There are other variable sets
