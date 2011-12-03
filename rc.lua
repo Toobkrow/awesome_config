@@ -11,6 +11,8 @@ require('freedesktop.utils')
 require('freedesktop.menu')
 --widget library
 require("vicious")
+--dynamic tagging library
+require("eminent")
 
 
 --#############################################################################
@@ -48,6 +50,7 @@ require("vicious")
 --#############################################################################
 -- Tags {{{
 	-- Define a tag table which hold all screen tags. We only have one screen.
+	-- TODO try out shifty and eminent for dynamic tagging
 	tags = {}
 	tags[myscreen]=awful.tag({"web","msg","fm","dev","msc"}, s, layouts[1])
 -- }}}
