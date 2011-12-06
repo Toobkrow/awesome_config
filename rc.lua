@@ -11,8 +11,6 @@ require('freedesktop.utils')
 require('freedesktop.menu')
 --widget library
 require("vicious")
---dynamic tagging library
-require("eminent")
 
 
 --#############################################################################
