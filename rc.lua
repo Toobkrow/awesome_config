@@ -12,8 +12,6 @@ require('freedesktop.menu')
 --widget library
 require("vicious")
 
-
---#############################################################################
 -- Variable definitions {{{
 	-- Themes define colours, icons, and wallpapers
 	beautiful.init( awful.util.getdir("config") .. "/themes/default/theme.lua")
@@ -44,8 +42,6 @@ require("vicious")
 
 -- }}}
 
-
---#############################################################################
 -- Tags {{{
 	-- Define a tag table which hold all screen tags. We only have one screen.
 	-- TODO try out shifty and eminent for dynamic tagging
@@ -53,8 +49,6 @@ require("vicious")
 	tags[myscreen]=awful.tag({"web","msg","fm","dev","msc"}, s, layouts[1])
 -- }}}
 
-
---#############################################################################
 -- Menu {{{
 	freedesktop.utils.terminal = terminal
 	freedesktop.utils.icon_theme = 'gnome'
@@ -101,8 +95,6 @@ require("vicious")
 	mymenulauncher = awful.widget.launcher({image = image(beautiful.awesome_icon), menu = mymainmenu})
 -- }}}
 
-
---#############################################################################
 -- Widgets {{{
 	-- Create a textclock widget
 	mytextclock = awful.widget.textclock({align = "right"})
@@ -162,8 +154,6 @@ require("vicious")
 	myseperator.text = " "
 -- }}}
 
-
---#############################################################################
 -- Wibox {{{
 	-- Create a promptbox for each screen
 	mypromptbox = awful.widget.prompt({layout = awful.widget.layout.horizontal.leftright})
@@ -198,8 +188,6 @@ require("vicious")
 	}
 -- }}}
 
-
---#############################################################################
 -- Mouse bindings for empty desktop space {{{
 	root.buttons(
 		awful.util.table.join(
@@ -212,8 +200,6 @@ require("vicious")
 	)
 -- }}}
 
-
---#############################################################################
 -- Key bindings {{{
 	globalkeys = awful.util.table.join(
 		-- next tag
@@ -376,8 +362,6 @@ require("vicious")
 	root.keys(globalkeys)
 -- }}}
 
-
---#############################################################################
 -- Rules {{{
 	awful.rules.rules = {
 		-- All clients will match this rule.
@@ -450,8 +434,6 @@ require("vicious")
 	}
 -- }}}
 
-
---#############################################################################
 -- Signals {{{
 	-- Signal function to execute when a new client appears.
 	client.add_signal("manage", function (c, startup)
@@ -482,8 +464,6 @@ require("vicious")
 	end)
 -- }}}
 
-
---#############################################################################
 -- Autostart programs {{{
 	function run_once(prg)
 		awful.util.spawn_with_shell("pgrep -u $USER -x " .. prg .. " || (" .. prg .. ")")
