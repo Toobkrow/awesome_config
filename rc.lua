@@ -295,7 +295,7 @@ require("vicious")
 			awful.util.spawn("amixer set Master toggle")
 		end),
 		awful.key({modkey,}, "Escape", function ()
-			awful.util.spawn("xscreensaver-command -lock")
+			awful.util.spawn("slock")
 		end),
 		awful.key({modkey, "Control"}, "r", awesome.restart)
 	)
@@ -465,9 +465,9 @@ require("vicious")
 -- }}}
 
 -- Autostart programs {{{
-	function run_once(prg)
-		awful.util.spawn_with_shell("pgrep -u $USER -x " .. prg .. " || (" .. prg .. ")")
-	end
+--	function run_once(prg)
+--		awful.util.spawn_with_shell("pgrep -u $USER -x " .. prg .. " || (" .. prg .. ")")
+--	end
 
 	do
 		-- do not use touchpad
@@ -476,12 +476,11 @@ require("vicious")
 		awful.util.spawn_with_shell("xmodmap /home/daniel/.Xmodmap")
 		-- no annoying beep sounds in applications
 		awful.util.spawn_with_shell("xset b off")
-		local cmds = 
-		{ 
-			"xscreensaver",
-		}
-		for _,i in pairs(cmds) do
-			run_once(i)
-		end
+--		local cmds = 
+--		{ 
+--		}
+--		for _,i in pairs(cmds) do
+--			run_once(i)
+--		end
 	end
 -- }}}
