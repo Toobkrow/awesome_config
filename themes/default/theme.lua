@@ -4,22 +4,22 @@
 
 theme = {}
 
-theme.font          = "monospace 8"
+theme.font          = "monospace 10"
 
 theme.bg_normal     = "#000000"
-theme.bg_focus      = "#222222"
+theme.bg_focus      = "#AAAAAA"
 theme.bg_urgent     = "#aa0000"
-theme.bg_minimize   = "#000000"
+theme.bg_minimize   = "#444444"
 
-theme.fg_normal 	= "#aa0000"
-theme.fg_focus 		= theme.fg_normal
+theme.fg_normal 	= theme.bg_focus
+theme.fg_focus 		= theme.bg_normal
 theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#555555"
+theme.fg_minimize   = theme.fg_normal
 
 theme.border_width  = "1"
-theme.border_normal = "#000000"
-theme.border_focus  = "#555555"
-theme.border_marked = "#91231c"
+theme.border_normal = theme.bg_normal
+theme.border_focus  = theme.bg_focus
+theme.border_marked = theme.bg_urgent
 
 -- There are other variable sets
 -- overriding the default one when
@@ -43,7 +43,7 @@ theme.tasklist_floating_icon = "/usr/share/awesome/themes/default/tasklist/float
 theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
 --theme.menu_height = "15"
 --theme.menu_width  = "100"
-theme.menu_border_color = theme.bg_normal
+theme.menu_border_color = theme.bg_minimize
 theme.menu_border_width = "1"
 
 -- You can add as many variables as
@@ -76,7 +76,7 @@ theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/zenbu
 theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/zenburn/titlebar/maximized_focus_active.png"
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "feh --bg-fill '/home/daniel/Bilder/Wallpapers/Women/Img_0412.jpg'" }
+theme.wallpaper_cmd = { "awsetbg -f '/home/daniel/Bilder/Wallpapers/Abstract & Other/wallpaper-265475.png'" }
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/zenburn/layouts/fairhw.png"

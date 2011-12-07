@@ -148,10 +148,6 @@ require("vicious")
 			end
 		end)
 	)
-
-	--create seperator widget
-	myseperator = widget({type = "textbox"})
-	myseperator.text = " "
 -- }}}
 
 -- Wibox {{{
@@ -176,7 +172,6 @@ require("vicious")
 		--we divide the widgets in two parts to make the tasklist expand
 		{
 			mytaglist,
-			myseperator,
 			mypromptbox,
 			layout = awful.widget.layout.horizontal.leftright
 		},
