@@ -80,7 +80,6 @@ require("vicious")
 	menu_items = {
 		{"webbrowser", webbrowser},
 		{"mail", "thunderbird"},
-		{"music", "etude"},
 		{"instant messenger", "pidgin"},
 		{"file manager", filemanager},
 		{" "},
