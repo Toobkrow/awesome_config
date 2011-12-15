@@ -20,8 +20,7 @@ require("vicious")
 	terminal = "sakura"
 	editor = "gvim"
 	filemanager = "pcmanfm"
-	webbrowser = "firefox"
-	onlineappbrowser = "uzbl-browser "
+	webbrowser = "chromium"
 
 	-- Default modkey.
 	-- Mod4 is the key with a logo between Control and Alt.
@@ -69,21 +68,12 @@ require("vicious")
 		{"shutdown", "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop"}
 	}
 
-	myonlinemenu = {
-		{"rainymood", webbrowser .. " rainymood.com"},
-		{"grooveshark", onlineappbrowser .. "grooveshark.com"},
-		{"zeit", onlineappbrowser .. "zeit.de"},
-		{"arte", onlineappbrowser .. "arte.tv/de"},
-		{"Uzbl", "uzbl-tabbed"}
-	}
-
 	menu_items = {
 		{"webbrowser", webbrowser},
 		{"mail", "thunderbird"},
 		{"instant messenger", "pidgin"},
 		{"file manager", filemanager},
 		{" "},
-		{"online", myonlinemenu},
 		{"applications", myapplicationsmenu},
 		{"awesome", myawesomemenu, image(beautiful.awesome_icon)},
 		{" "},
