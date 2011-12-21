@@ -1,3 +1,4 @@
+-- Library includings {{{
 -- Standard awesome library
 require("awful")
 require("awful.autofocus")
@@ -12,6 +13,8 @@ require('freedesktop.menu')
 --widget library
 require("vicious")
 
+-- }}}
+
 -- Variable definitions {{{
 	-- Themes define colours, icons, and wallpapers
 	beautiful.init( awful.util.getdir("config") .. "/themes/default/theme.lua")
@@ -19,8 +22,6 @@ require("vicious")
 	-- This is used as the default terminal and editor to run.
 	terminal = "sakura"
 	editor = "gvim"
-	filemanager = "pcmanfm"
-	webbrowser = "chromium"
 
 	-- Default modkey.
 	-- Mod4 is the key with a logo between Control and Alt.
@@ -37,15 +38,13 @@ require("vicious")
 	-- to clearify that the screennumber is ment
 	myscreen = 1
 
-	
-
 -- }}}
 
 -- Tags {{{
 	-- Define a tag table which hold all screen tags. We only have one screen.
 	-- TODO try out shifty and eminent for dynamic tagging
 	tags = {}
-	tags[myscreen]=awful.tag({"web","msg","fm","dev","msc"}, s, layouts[1])
+	tags[myscreen]=awful.tag({"web","msg","dev","msc"}, s, layouts[1])
 -- }}}
 
 -- Menu {{{
@@ -69,19 +68,17 @@ require("vicious")
 	}
 
 	menu_items = {
-		{"webbrowser", webbrowser},
+		{"webbrowser", "chromium"},
 		{"mail", "thunderbird"},
 		{"instant messenger", "pidgin"},
-		{"file manager", filemanager},
-		{" "},
+		{"filemanager", terminal .. " -e ranger"},
+		{" "," "},
 		{"applications", myapplicationsmenu},
 		{"awesome", myawesomemenu, image(beautiful.awesome_icon)},
-		{" "},
+		{" "," "},
 		{"Quit", myquitmenu}
 	}
 	mymainmenu = awful.menu.new({items = menu_items, width = 150})
-
-	mymenulauncher = awful.widget.launcher({image = image(beautiful.awesome_icon), menu = mymainmenu})
 -- }}}
 
 -- Widgets {{{
@@ -90,6 +87,9 @@ require("vicious")
 
 	-- Create a systray
 	mysystray = widget({type = "systray"})
+
+	-- Create a menu button
+	--mymenulauncher = awful.widget.launcher({image = image(beautiful.menu_icon), menu = mymainmenu})
 
 	-- Create a battery status widget
 	mybat = widget({type = "textbox"})
@@ -160,6 +160,7 @@ require("vicious")
 	mywibox.widgets = {
 		--we divide the widgets in two parts to make the tasklist expand
 		{
+			--mymenulauncher,
 			mytaglist,
 			mypromptbox,
 			layout = awful.widget.layout.horizontal.leftright
@@ -361,7 +362,7 @@ require("vicious")
 		{rule = {class = "gimp"}, properties =
 			{
 				floating = true,
-				tag = tags[myscreen][5]
+				tag = tags[myscreen][4]
 			}
 		},
 		{rule = {class = "Firefox"}, properties =
@@ -389,11 +390,6 @@ require("vicious")
 				tag = tags[myscreen][2]
 			}
 		},
-		{rule = {class = "Pcmanfm"}, properties =
-			{
-				tag = tags[myscreen][3]
-			}
-		},
 		{rule = {class = "Pidgin" }, properties =
 			{
 				floating = true,
@@ -407,12 +403,12 @@ require("vicious")
 		},
 		{rule = {class = "Etude"}, properties =
 			{
-				tag = tags[myscreen][5]
+				tag = tags[myscreen][4]
 			}
 		},
 		{rule = {class = "Gvim"}, properties =
 			{
-				tag = tags[myscreen][4]
+				tag = tags[myscreen][3]
 			}
 		}
 	}
