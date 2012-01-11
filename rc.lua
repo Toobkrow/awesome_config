@@ -17,7 +17,7 @@ require("vicious")
 
 -- Variable definitions {{{
 	-- Themes define colours, icons, and wallpapers
-	beautiful.init( awful.util.getdir("config") .. "/themes/default/theme.lua")
+	beautiful.init( awful.util.getdir("config") .. "/themes/darkblue/theme.lua")
 
 	-- This is used as the default terminal and editor to run.
 	terminal = "sakura"
@@ -93,7 +93,7 @@ require("vicious")
 
 	-- Create a battery status widget
 	mybat = widget({type = "textbox"})
-	vicious.register(mybat, vicious.widgets.bat, " [ $2% $1 $3 ] ", 10, "BAT1")
+	vicious.register(mybat, vicious.widgets.bat, "$2% $3", 10, "BAT1")
 
 	mytaglist = {}
 	mytaglist.buttons = awful.util.table.join(
@@ -225,18 +225,17 @@ require("vicious")
 		awful.key({modkey, "Shift"}, "n", awful.client.restore), 
 
 		-- Layout manipulation
-		-- move position of focussed window
-		awful.key({modkey,}, "i", function ()
-			awful.client.swap.byidx(1)
-		end),
-		awful.key({modkey,}, "u", function ()
-			awful.client.swap.byidx(-1)
+		-- set focussed window as master of this tag
+		awful.key({modkey,}, "s", function ()
+			while not(awful.client.idx(c).col == 0) do
+				awful.client.swap.byidx(1)
+			end
 		end),
 		-- change horizontal size
-		awful.key({modkey, "Shift"}, "i", function ()
+		awful.key({modkey,}, "i", function ()
 			awful.tag.incmwfact( 0.05)
 		end), 
-		awful.key({modkey, "Shift"}, "u", function ()
+		awful.key({modkey,}, "u", function ()
 			awful.tag.incmwfact(-0.05)
 		end),
 		-- staple windows vertically
@@ -417,13 +416,6 @@ require("vicious")
 -- Signals {{{
 	-- Signal function to execute when a new client appears.
 	client.add_signal("manage", function (c, startup)
-		-- Enable sloppy focus
-		--c:add_signal("mouse::enter", function(c)
-		--	if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier 
-		--	and awful.client.focus.filter(c) then
-		--		client.focus = c
-		--	end
-		--end)
 		-- Put windows in a smart way, only if they does not set an initial position.
 		if not startup then
 			if not c.size_hints.user_position
@@ -434,6 +426,8 @@ require("vicious")
 		end
 		--remove gaps between windows
 		c.size_hints_honor = false
+		--to keep left window position set new window as slave
+		awful.client.setslave(c)
 	end)
 
 	client.add_signal("focus", function(c)
