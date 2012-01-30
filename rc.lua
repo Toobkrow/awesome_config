@@ -68,9 +68,8 @@ require("vicious")
 	}
 
 	menu_items = {
-		{"webbrowser", "jumanji"},
+		{"webbrowser", "firefox"},
 		{"mail", "thunderbird"},
-		--{"filemanager", terminal .. " -e ranger"},
 		{"filemanager", "pcmanfm"},
 		{" "," "},
 		{"applications", myapplicationsmenu},
