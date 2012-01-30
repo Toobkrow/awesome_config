@@ -73,7 +73,7 @@ require("vicious")
 		{"filemanager", "pcmanfm"},
 		{" "," "},
 		{"applications", myapplicationsmenu},
-		{"awesome", myawesomemenu, image(beautiful.awesome_icon)},
+		{"awesome", myawesomemenu},
 		{" "," "},
 		{"Quit", myquitmenu}
 	}

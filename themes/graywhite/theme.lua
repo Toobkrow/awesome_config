@@ -9,7 +9,7 @@ theme.font          = "monospace 8"
 theme.bg_normal     = "#293C42"
 theme.bg_focus      = "#ffffff"
 theme.bg_urgent     = "#aa0000"
-theme.bg_minimize   = "#222222"
+theme.bg_minimize   = "#aa0000"
 
 theme.fg_normal 	= "#ffffff"
 theme.fg_focus 		= "#000000"
@@ -43,8 +43,8 @@ theme.tasklist_floating_icon = "/usr/share/awesome/themes/default/tasklist/float
 theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
 --theme.menu_height = "15"
 --theme.menu_width  = "100"
-theme.menu_border_color = theme.bg_minimize
-theme.menu_border_width = "1"
+theme.menu_border_color = theme.bg_normal
+theme.menu_border_width = "0"
 
 -- You can add as many variables as
 -- you wish and access them by using
