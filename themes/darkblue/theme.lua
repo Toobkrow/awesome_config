@@ -6,9 +6,9 @@ theme = {}
 
 theme.font          = "monospace 8"
 
-theme.bg_normal     = "#001130"
+theme.bg_normal     = "#052545"
 --theme.bg_focus      = "#00aaaa"
-theme.bg_focus      = "#153555"
+theme.bg_focus      = "#254575"
 theme.bg_urgent     = "#aa0000"
 theme.bg_minimize   = "#222222"
 
@@ -77,7 +77,7 @@ theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/zenbu
 theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/zenburn/titlebar/maximized_focus_active.png"
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "awsetbg -c '/home/daniel/Bilder/Wallpapers/Abstract & Other/blue.jpg'" }
+theme.wallpaper_cmd = { "awsetbg -f '/home/daniel/Bilder/Wallpapers/Abstract & Other/pinkbluelines.jpg'" }
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/zenburn/layouts/fairhw.png"

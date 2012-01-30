@@ -17,7 +17,7 @@ require("vicious")
 
 -- Variable definitions {{{
 	-- Themes define colours, icons, and wallpapers
-	beautiful.init( awful.util.getdir("config") .. "/themes/darkblue/theme.lua")
+	beautiful.init( awful.util.getdir("config") .. "/themes/graywhite/theme.lua")
 
 	-- This is used as the default terminal and editor to run.
 	terminal = "sakura"
@@ -68,10 +68,10 @@ require("vicious")
 	}
 
 	menu_items = {
-		{"webbrowser", "chromium"},
+		{"webbrowser", "jumanji"},
 		{"mail", "thunderbird"},
-		{"instant messenger", "pidgin"},
-		{"filemanager", terminal .. " -e ranger"},
+		--{"filemanager", terminal .. " -e ranger"},
+		{"filemanager", "pcmanfm"},
 		{" "," "},
 		{"applications", myapplicationsmenu},
 		{"awesome", myawesomemenu, image(beautiful.awesome_icon)},
