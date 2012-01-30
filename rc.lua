@@ -88,9 +88,6 @@ require("vicious")
 	-- Create a systray
 	mysystray = widget({type = "systray"})
 
-	-- Create a menu button
-	--mymenulauncher = awful.widget.launcher({image = image(beautiful.menu_icon), menu = mymainmenu})
-
 	-- Create a battery status widget
 	mybat = widget({type = "textbox"})
 	vicious.register(mybat, vicious.widgets.bat, "$2% $3", 10, "BAT1")
@@ -107,13 +104,10 @@ require("vicious")
 	mytasklist = {}
 	mytasklist.buttons = awful.util.table.join(
 		awful.button({}, 1, function (c)
-			if c == client.focus then
-				c.minimized = true
-			else
+			if not (c == client.focus) then
 				if not c:isvisible() then
 					awful.tag.viewonly(c:tags()[1])
 				end
-				-- This will also un-minimize the client, if needed
 				client.focus = c
 				c:raise()
 			end
@@ -160,7 +154,6 @@ require("vicious")
 	mywibox.widgets = {
 		--we divide the widgets in two parts to make the tasklist expand
 		{
-			--mymenulauncher,
 			mytaglist,
 			mypromptbox,
 			layout = awful.widget.layout.horizontal.leftright
@@ -220,9 +213,6 @@ require("vicious")
 				client.focus:raise()
 			end
 		end),
-
-		-- restore minimized window
-		awful.key({modkey, "Shift"}, "n", awful.client.restore), 
 
 		-- Layout manipulation
 		-- set focussed window as master of this tag
@@ -295,11 +285,6 @@ require("vicious")
 		--toggle floating
 		awful.key({modkey,}, "space", function (c)
 			awful.client.floating.toggle(c)     
-		end),
-
-		--minimize
-		awful.key({modkey,}, "n", function (c)
-			c.minimized = true
 		end),
 
 		-- toggle maximized
