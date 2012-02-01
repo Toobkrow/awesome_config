@@ -17,7 +17,7 @@ require("vicious")
 
 -- Variable definitions {{{
 	-- Themes define colours, icons, and wallpapers
-	beautiful.init( awful.util.getdir("config") .. "/themes/graywhite/theme.lua")
+	beautiful.init( awful.util.getdir("config") .. "/themes/grayblue/theme.lua")
 
 	-- This is used as the default terminal and editor to run.
 	terminal = "sakura"
