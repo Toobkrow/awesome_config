@@ -17,11 +17,10 @@ require("vicious")
 
 -- Variable definitions {{{
 	-- Themes define colours, icons, and wallpapers
-	beautiful.init( awful.util.getdir("config") .. "/themes/grayblue/theme.lua")
+	beautiful.init( awful.util.getdir("config") .. "/theme/theme.lua")
 
 	-- This is used as the default terminal and editor to run.
 	terminal = "sakura"
-	editor = "gvim"
 
 	-- Default modkey.
 	-- Mod4 is the key with a logo between Control and Alt.
@@ -44,20 +43,13 @@ require("vicious")
 	-- Define a tag table which hold all screen tags. We only have one screen.
 	-- TODO try out shifty and eminent for dynamic tagging
 	tags = {}
-	tags[myscreen]=awful.tag({"web","msg","dev","msc"}, s, layouts[1])
+	tags[myscreen]=awful.tag({"www","mail","code","misc"}, s, layouts[1])
 -- }}}
 
 -- Menu {{{
 	freedesktop.utils.terminal = terminal
-	freedesktop.utils.icon_theme = 'gnome'
+	freedesktop.utils.icon_theme = 'nil'
 	myapplicationsmenu = freedesktop.menu.new()
-
-	myawesomemenu = {
-		{"manual", terminal .. " -e man awesome"},
-		{"edit config", editor .. " " .. awful.util.getdir("config") .. "/rc.lua"},
-		{"restart", awesome.restart},
-		{"quit", awesome.quit}
-	}
 
 	myquitmenu = {
 		{"lock screen", "xscreensaver-command -lock" },
@@ -68,14 +60,11 @@ require("vicious")
 	}
 
 	menu_items = {
-		{"webbrowser", "firefox"},
+		{"www", "firefox"},
 		{"mail", "thunderbird"},
-		{"filemanager", "pcmanfm"},
-		{" "," "},
-		{"applications", myapplicationsmenu},
-		{"awesome", myawesomemenu},
-		{" "," "},
-		{"Quit", myquitmenu}
+		{"files", "sakura -e ranger"},
+		{"apps", myapplicationsmenu},
+		{"leave", myquitmenu}
 	}
 	mymainmenu = awful.menu.new({items = menu_items, width = 150})
 -- }}}
