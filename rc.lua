@@ -83,7 +83,7 @@ require("vicious")
 	mytaglist = {}
 	mytaglist.buttons = awful.util.table.join(
 		awful.button({}, 1, awful.tag.viewonly),
-		awful.button({ modkey }, 1, awful.client.movetotag),
+		awful.button({modkey}, 1, awful.client.movetotag),
 		awful.button({}, 3, awful.tag.viewtoggle),
 		awful.button({modkey}, 3, awful.client.toggletag),
 		awful.button({}, 4, awful.tag.viewnext),
@@ -169,17 +169,17 @@ require("vicious")
 -- Key bindings {{{
 	globalkeys = awful.util.table.join(
 		-- next tag
-		awful.key({modkey,}, "h", function () 
+		awful.key({modkey}, "h", function () 
 			awful.tag.viewprev()
 		end), 
 
 		-- previous tag
-		awful.key({modkey,}, "l", function ()
+		awful.key({modkey}, "l", function ()
 			awful.tag.viewnext()
 		end),
 
 		-- next window
-		awful.key({modkey,}, "k", function ()
+		awful.key({modkey}, "k", function ()
 			awful.client.focus.byidx( 1)
 			if client.focus then
 				client.focus:raise()
@@ -187,7 +187,7 @@ require("vicious")
 		end),
 
 		-- previous window
-		awful.key({modkey,}, "j", function ()
+		awful.key({modkey}, "j", function ()
 			awful.client.focus.byidx(-1)
 			if client.focus then
 				client.focus:raise()
@@ -195,7 +195,7 @@ require("vicious")
 		end),
 
 		-- previously used window
-		awful.key({modkey,}, "Tab", function ()
+		awful.key({modkey}, "Tab", function ()
 			awful.client.focus.history.previous()
 			if client.focus then
 				client.focus:raise()
@@ -204,28 +204,21 @@ require("vicious")
 
 		-- Layout manipulation
 		-- set focussed window as master of this tag
-		awful.key({modkey,}, "s", function ()
+		awful.key({modkey}, "s", function ()
 			while not(awful.client.idx(c).col == 0) do
 				awful.client.swap.byidx(1)
 			end
 		end),
 		-- change horizontal size
-		awful.key({modkey,}, "i", function ()
+		awful.key({modkey}, "i", function ()
 			awful.tag.incmwfact( 0.05)
 		end), 
-		awful.key({modkey,}, "u", function ()
+		awful.key({modkey}, "u", function ()
 			awful.tag.incmwfact(-0.05)
-		end),
-		-- staple windows vertically
-		awful.key({modkey, "Control"}, "i", function ()
-			awful.tag.incnmaster(1)
-		end), 
-		awful.key({modkey, "Control"}, "u", function ()
-			awful.tag.incnmaster(-1)
 		end),
 
 		-- show menu
-		awful.key({modkey,}, "w", function ()
+		awful.key({modkey}, "w", function ()
 			mymainmenu:show({keygrabber = true})
 		end),
 
@@ -235,7 +228,7 @@ require("vicious")
 		end),
 
 		-- advanced desktop functionalitay
-		awful.key({ modkey,}, "Return", function ()
+		awful.key({modkey}, "Return", function ()
 			awful.util.spawn(terminal)
 		end),
 		awful.key({}, "XF86AudioPlay", function ()
@@ -256,27 +249,27 @@ require("vicious")
 		awful.key({}, "XF86AudioMute", function ()
 			awful.util.spawn("amixer set Master toggle")
 		end),
-		awful.key({modkey,}, "Escape", function ()
+		awful.key({modkey}, "Escape", function ()
 			awful.util.spawn("slock")
 		end),
-		awful.key({modkey, "Control"}, "r", awesome.restart)
+		awful.key({modkey, "Shift"}, "r", awesome.restart)
 	)
 
 	clientkeys = awful.util.table.join(
-		awful.key({ modkey,}, "f", function (c)
+		awful.key({modkey}, "f", function (c)
 			c.fullscreen = not c.fullscreen
 		end),
-		awful.key({modkey,}, "c", function (c)
+		awful.key({modkey}, "c", function (c)
 			c:kill()
 		end),
 
 		--toggle floating
-		awful.key({modkey,}, "space", function (c)
+		awful.key({modkey}, "space", function (c)
 			awful.client.floating.toggle(c)     
 		end),
 
 		-- toggle maximized
-		awful.key({modkey,}, "m", function (c)
+		awful.key({modkey}, "m", function (c)
 			c.maximized_horizontal = not c.maximized_horizontal
 			c.maximized_vertical   = not c.maximized_vertical
 		end)
@@ -298,7 +291,7 @@ require("vicious")
 			end),
 
 			-- move focussed window to tag
-			awful.key({ modkey, "Shift" }, "#" .. i + 9, function ()
+			awful.key({modkey, "Shift"}, "#" .. i + 9, function ()
 				if client.focus and tags[myscreen][i] then
 					awful.client.movetotag(tags[myscreen][i])
 				end
@@ -412,22 +405,12 @@ require("vicious")
 -- }}}
 
 -- Autostart programs {{{
---	function run_once(prg)
---		awful.util.spawn_with_shell("pgrep -u $USER -x " .. prg .. " || (" .. prg .. ")")
---	end
-
 	do
-		-- do not use touchpad
-		awful.util.spawn_with_shell("synclient TouchpadOff=1")
 		-- set capslock key as escape key
 		awful.util.spawn_with_shell("xmodmap /home/daniel/.Xmodmap")
 		-- no annoying beep sounds in applications
 		awful.util.spawn_with_shell("xset b off")
---		local cmds = 
---		{ 
---		}
---		for _,i in pairs(cmds) do
---			run_once(i)
---		end
+		-- no touchpad
+		awful.util.spawn_with_shell("synclient TouchpadOff=1")
 	end
 -- }}}
