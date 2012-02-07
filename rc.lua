@@ -270,8 +270,15 @@ require("vicious")
 
 		-- toggle maximized
 		awful.key({modkey}, "m", function (c)
-			c.maximized_horizontal = not c.maximized_horizontal
-			c.maximized_vertical   = not c.maximized_vertical
+			if not c.maximized_horizontal then
+				awful.client.floating.set(c, true)
+				c.maximized_horizontal = true
+				c.maximized_vertical = true
+			else
+				awful.client.floating.set(c, false)
+				c.maximized_horizontal = false
+				c.maximized_vertical = false
+			end
 		end)
 	)
 
