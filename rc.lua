@@ -41,14 +41,13 @@ require("vicious")
 
 -- Tags {{{
 	-- Define a tag table which hold all screen tags. We only have one screen.
-	-- TODO try out shifty and eminent for dynamic tagging
 	tags = {}
 	tags[myscreen]=awful.tag({"www","mail","code","misc"}, s, layouts[1])
 -- }}}
 
 -- Menu {{{
 	freedesktop.utils.terminal = terminal
-	freedesktop.utils.icon_theme = 'nil'
+	freedesktop.utils.icon_theme = 'oxygen'
 	myapplicationsmenu = freedesktop.menu.new()
 
 	myquitmenu = {
@@ -62,7 +61,7 @@ require("vicious")
 	menu_items = {
 		{"www", "firefox"},
 		{"mail", "thunderbird"},
-		{"files", "sakura -e ranger"},
+		{"files", "pcmanfm"},
 		{"apps", myapplicationsmenu},
 		{"leave", myquitmenu}
 	}
@@ -260,6 +259,9 @@ require("vicious")
 			c.fullscreen = not c.fullscreen
 		end),
 		awful.key({modkey}, "c", function (c)
+			c:kill()
+		end),
+		awful.key({modkey}, "q", function (c)
 			c:kill()
 		end),
 
