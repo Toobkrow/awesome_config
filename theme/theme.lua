@@ -2,8 +2,8 @@ theme = {}
 
 theme.font          = "monospace 8"
 
-theme.bg_normal     = "#293C42"
-theme.bg_focus      = "#ccaaff"
+theme.bg_normal     = "#000000"
+theme.bg_focus      = "#80aaFF"
 theme.bg_urgent     = "#aa0000"
 theme.bg_minimize   = "#aa0000"
 
