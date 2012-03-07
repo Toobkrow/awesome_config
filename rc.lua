@@ -61,7 +61,7 @@ require("vicious")
 	menu_items = {
 		{"www", "firefox"},
 		{"mail", "thunderbird"},
-		{"files", "pcmanfm"},
+		{"files", "sakura -e ranger"},
 		{"apps", myapplicationsmenu},
 		{"leave", myquitmenu}
 	}
@@ -99,23 +99,8 @@ require("vicious")
 				c:raise()
 			end
 		end),
-		awful.button({}, 3, function ()
-			if instance then
-				instance:hide()
-				instance = nil
-			else
-				instance = awful.menu.clients({ width=250 })
-			end
-		end),
-		awful.button({}, 4, function ()
-			awful.client.focus.byidx(1)
-			if client.focus then client.focus:raise() end
-		end),
-		awful.button({}, 5, function ()
-			awful.client.focus.byidx(-1)
-			if client.focus then
-				client.focus:raise()
-			end
+		awful.button({}, 2, function (c)
+			c:kill()
 		end)
 	)
 -- }}}
