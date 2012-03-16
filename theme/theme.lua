@@ -26,6 +26,6 @@ theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
 theme.menu_border_width = "0"
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "awsetbg -a '/home/daniel/.config/awesome/theme/wallpaper.jpg'" }
+theme.wallpaper_cmd = { "awsetbg -a '/home/daniel/.config/awesome/theme/wallpaper2.jpg'" }
 
 return theme
