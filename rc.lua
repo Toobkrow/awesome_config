@@ -42,7 +42,7 @@ require("vicious")
 -- Tags {{{
 	-- Define a tag table which hold all screen tags. We only have one screen.
 	tags = {}
-	tags[myscreen]=awful.tag({"www","mail","code","misc"}, s, layouts[1])
+	tags[myscreen]=awful.tag({"www","mail","3","4","5","6"}, s, layouts[1])
 -- }}}
 
 -- Menu {{{
@@ -115,7 +115,7 @@ require("vicious")
 	-- Create a tasklist widget
 	mytasklist = awful.widget.tasklist(function(c)
 		--little wraparound to remove tasklist-icon
-		--  without modifying the original tasklist.lua
+		--	without modifying the original tasklist.lua
 		local tmptask = { awful.widget.tasklist.label.currenttags(c, myscreen) }
 		return tmptask[1], tmptask[2], tmptask[3], nil
 	end, mytasklist.buttons)
@@ -153,9 +153,9 @@ require("vicious")
 -- Key bindings {{{
 	globalkeys = awful.util.table.join(
 		-- next tag
-		awful.key({modkey}, "h", function () 
+		awful.key({modkey}, "h", function ()
 			awful.tag.viewprev()
-		end), 
+		end),
 
 		-- previous tag
 		awful.key({modkey}, "l", function ()
@@ -193,10 +193,12 @@ require("vicious")
 				awful.client.swap.byidx(1)
 			end
 		end),
+
 		-- change horizontal size
 		awful.key({modkey}, "i", function ()
 			awful.tag.incmwfact( 0.05)
-		end), 
+		end),
+
 		awful.key({modkey}, "u", function ()
 			awful.tag.incmwfact(-0.05)
 		end),
@@ -215,27 +217,35 @@ require("vicious")
 		awful.key({modkey}, "Return", function ()
 			awful.util.spawn(terminal)
 		end),
+
 		awful.key({}, "XF86AudioPlay", function ()
 			awful.util.spawn("nyxmms2 toggle")
 		end),
+
 		awful.key({}, "XF86AudioNext", function ()
 			awful.util.spawn("nyxmms2 next")
 		end),
+
 		awful.key({}, "XF86AudioPrev", function ()
 			awful.util.spawn("nyxmms2 prev")
 		end),
+
 		awful.key({}, "XF86AudioRaiseVolume", function ()
 			awful.util.spawn("amixer sset Master 2dB+")
 		end),
+
 		awful.key({}, "XF86AudioLowerVolume", function ()
 			awful.util.spawn("amixer sset Master 2dB-")
 		end),
+
 		awful.key({}, "XF86AudioMute", function ()
 			awful.util.spawn("amixer set Master toggle")
 		end),
+
 		awful.key({modkey}, "Escape", function ()
 			awful.util.spawn("slock")
 		end),
+
 		awful.key({modkey, "Shift"}, "r", awesome.restart)
 	)
 
@@ -243,16 +253,18 @@ require("vicious")
 		awful.key({modkey}, "f", function (c)
 			c.fullscreen = not c.fullscreen
 		end),
+
 		awful.key({modkey}, "c", function (c)
 			c:kill()
 		end),
+
 		awful.key({modkey}, "q", function (c)
 			c:kill()
 		end),
 
 		--toggle floating
 		awful.key({modkey}, "space", function (c)
-			awful.client.floating.toggle(c)     
+			awful.client.floating.toggle(c)
 		end),
 
 		-- toggle maximized
@@ -356,6 +368,16 @@ require("vicious")
 			}
 		},
 		{rule = {class = "Wicd"}, properties =
+			{
+				floating = true
+			}
+		},
+		{rule = {class = "recordMyDesktop"}, properties =
+			{
+				floating = true
+			}
+		},
+		{rule = {class = "Skype"}, properties =
 			{
 				floating = true
 			}

@@ -3,13 +3,13 @@ theme = {}
 theme.font          = "monospace 8"
 
 theme.bg_normal     = "#000000"
-theme.bg_focus      = "#80aaFF"
+theme.bg_focus      = "#8B0000"
 theme.bg_urgent     = "#aa0000"
 theme.bg_minimize   = "#aa0000"
 
 theme.fg_normal 	= "#ffffff"
-theme.fg_focus 		= "#000000"
-theme.fg_urgent     = "#ffffff"
+theme.fg_focus 		= "#ffffff"
+theme.fg_urgent   = "#ffffff"
 theme.fg_minimize   = theme.fg_normal
 
 theme.border_width  = "4"
@@ -26,6 +26,6 @@ theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
 theme.menu_border_width = "0"
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "awsetbg -a '/home/daniel/.config/awesome/theme/wallpaper2.jpg'" }
+theme.wallpaper_cmd = { "awsetbg -a '/home/daniel/.config/awesome/theme/wallpaper.jpg'" }
 
 return theme
