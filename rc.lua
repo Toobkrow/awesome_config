@@ -20,7 +20,7 @@ require("vicious")
 	beautiful.init( awful.util.getdir("config") .. "/theme/theme.lua")
 
 	-- This is used as the default terminal and editor to run.
-	terminal = "sakura"
+	terminal = "xterm"
 
 	-- Default modkey.
 	-- Mod4 is the key with a logo between Control and Alt.
@@ -42,7 +42,7 @@ require("vicious")
 -- Tags {{{
 	-- Define a tag table which hold all screen tags. We only have one screen.
 	tags = {}
-	tags[myscreen]=awful.tag({"www","mail","3","4","5","6"}, s, layouts[1])
+	tags[myscreen]=awful.tag({"1","2","3","4"}, s, layouts[1])
 -- }}}
 
 -- Menu {{{
@@ -54,14 +54,16 @@ require("vicious")
 		{"lock screen", "xscreensaver-command -lock" },
 		{"suspend", "dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Suspend"},
 		{"hibernate", "dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Hibernate"},
-		{"reboot", "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart"},
-		{"shutdown", "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop"}
+		--{"reboot", "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart"},
+		{"reboot", "sudo reboot"},
+		--{"shutdown", "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop"}
+		{"shutdown", "sudo shutdown -h now"}
 	}
 
 	menu_items = {
 		{"www", "firefox"},
 		{"mail", "thunderbird"},
-		{"files", "sakura -e ranger"},
+		{"files", "pcmanfm"},
 		{"apps", myapplicationsmenu},
 		{"leave", myquitmenu}
 	}
@@ -99,8 +101,8 @@ require("vicious")
 				c:raise()
 			end
 		end),
-		awful.button({}, 2, function (c)
-			c:kill()
+		awful.button({}, 3, function ()
+				mymainmenu:toggle()
 		end)
 	)
 -- }}}
@@ -264,7 +266,12 @@ require("vicious")
 
 		--toggle floating
 		awful.key({modkey}, "space", function (c)
-			awful.client.floating.toggle(c)
+			if c.maximized_horizontal and c.maximized_vertical then
+				c.maximized_horizontal = false
+				c.maximized_vertical = false
+			else
+				awful.client.floating.toggle(c)
+			end
 		end),
 
 		-- toggle maximized
@@ -353,7 +360,7 @@ require("vicious")
 		},
 		{rule = {class = "Thunderbird"}, properties =
 			{
-				tag = tags[myscreen][2]
+				tag = tags[myscreen][1]
 			}
 		},
 		{rule = {class = "Claws"}, properties =
@@ -424,8 +431,13 @@ require("vicious")
 	do
 		-- set capslock key as escape key
 		awful.util.spawn_with_shell("xmodmap /home/daniel/.Xmodmap")
+		-- no more autoblanking screen
+		awful.util.spawn_with_shell("xset -dpms")
+		awful.util.spawn_with_shell("xset s off")
 		-- no annoying beep sounds in applications
 		awful.util.spawn_with_shell("xset b off")
+		-- apply settings in .Xresources
+		awful.util.spawn_with_shell("xrdb -load .Xresources")
 		-- no touchpad
 		awful.util.spawn_with_shell("synclient TouchpadOff=1")
 	end
