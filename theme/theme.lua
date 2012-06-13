@@ -3,19 +3,19 @@ theme = {}
 theme.font          = "fixed 10"
 
 theme.bg_normal     = "#000000"
-theme.bg_focus      = "#000000"
+theme.bg_focus      = "#005AAB"
 theme.bg_urgent     = "#aa0000"
 theme.bg_minimize   = "#aa0000"
 
-theme.fg_normal 	= "#B2BEB5"
-theme.fg_focus 		= "#00AEEF"
+theme.fg_normal 	= "#708090"
+theme.fg_focus 		= "#ffffff"
 --theme.fg_focus 		= "#C1121C"
-theme.fg_urgent   = "#ffffff"
+theme.fg_urgent   = "#000000"
 theme.fg_minimize   = theme.fg_normal
 
-theme.border_width  = "1"
-theme.border_normal = theme.bg_normal
-theme.border_focus  = theme.fg_focus
+theme.border_width  = "3"
+theme.border_normal = theme.fg_normal
+theme.border_focus  = theme.bg_focus
 theme.border_marked = theme.bg_urgent
 
 -- Display the taglist squares

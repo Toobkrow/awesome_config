@@ -42,32 +42,48 @@ require("vicious")
 -- Tags {{{
 	-- Define a tag table which hold all screen tags. We only have one screen.
 	tags = {}
-	tags[myscreen]=awful.tag({"1","2","3","4"}, s, layouts[1])
+	tags[myscreen]=awful.tag({"1","2","3","4","5","6"}, s, layouts[1])
 -- }}}
 
 -- Menu {{{
 	freedesktop.utils.terminal = terminal
 	freedesktop.utils.icon_theme = 'oxygen'
-	myapplicationsmenu = freedesktop.menu.new()
+	freedesktopmenu = freedesktop.menu.new()
+	menu_items = {}
+
+	-- remove all the top-menu icons
+	while(freedesktopmenu[1]) do
+		table.insert(menu_items, {freedesktopmenu[1][1], freedesktopmenu[1][2]})
+		table.remove(freedesktopmenu, 1)
+		end
 
 	myquitmenu = {
-		{"lock screen", "xscreensaver-command -lock" },
-		{"suspend", "dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Suspend"},
-		{"hibernate", "dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Hibernate"},
+		{"lock screen", "slock" },
+		--{"suspend", "dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Suspend"},
+		--{"hibernate", "dbus-send --system --print-reply --dest=\"org.freedesktop.UPower\" /org/freedesktop/UPower org.freedesktop.UPower.Hibernate"},
 		--{"reboot", "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart"},
 		{"reboot", "sudo reboot"},
 		--{"shutdown", "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop"}
 		{"shutdown", "sudo shutdown -h now"}
 	}
 
-	menu_items = {
-		{"www", "firefox"},
-		{"mail", "thunderbird"},
-		{"files", "pcmanfm"},
-		{"apps", myapplicationsmenu},
-		{"leave", myquitmenu}
-	}
+	table.insert(menu_items, 1, {" "," "})
+	table.insert(menu_items, 1, {"monitor-settings", "lxrandr"})
+	table.insert(menu_items, 1, {"files", "pcmanfm"})
+	table.insert(menu_items, 1, {"mail", "thunderbird"})
+	table.insert(menu_items, 1, {"www", "firefox"})
+	table.insert(menu_items, {"",""})
+	table.insert(menu_items, {"leave", myquitmenu})
+	--menu_items = {
+		--{"www", "firefox"},
+		--{"mail", "thunderbird"},
+		--{"files", "pcmanfm"},
+		--{"monitor-settings", "lxrandr"},
+		--{"apps", myapplicationsmenu},
+		--{"leave", myquitmenu}
+	--}
 	mymainmenu = awful.menu.new({items = menu_items, width = 150})
+
 -- }}}
 
 -- Widgets {{{
@@ -371,7 +387,7 @@ require("vicious")
 		{rule = {class = "Pidgin" }, properties =
 			{
 				floating = true,
-				tag = tags[myscreen][2]
+				--tag = tags[myscreen][2]
 			}
 		},
 		{rule = {class = "Wicd"}, properties =
@@ -397,6 +413,12 @@ require("vicious")
 		{rule = {class = "Gvim"}, properties =
 			{
 				tag = tags[myscreen][3]
+			}
+		},
+		{ rule = { instance = "plugin-container" },	properties =
+			{
+				-- no tiling for i.e. youtube video fullscreen
+				floating = true
 			}
 		}
 	}
@@ -440,5 +462,8 @@ require("vicious")
 		awful.util.spawn_with_shell("xrdb -load .Xresources")
 		-- no touchpad
 		awful.util.spawn_with_shell("synclient TouchpadOff=1")
+
+		-- no more problem with java applications
+		awful.util.spawn_with_shell("wmname LG3D")
 	end
 -- }}}
