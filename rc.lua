@@ -376,7 +376,7 @@ require("vicious")
 		},
 		{rule = {class = "Thunderbird"}, properties =
 			{
-				tag = tags[myscreen][1]
+				tag = tags[myscreen][2]
 			}
 		},
 		{rule = {class = "Claws"}, properties =
