@@ -42,7 +42,7 @@ require("vicious")
 -- Tags {{{
 	-- Define a tag table which hold all screen tags. We only have one screen.
 	tags = {}
-	tags[myscreen]=awful.tag({"1","2","3","4","5","6"}, s, layouts[1])
+	tags[myscreen]=awful.tag({"term","web","mail","media","misc"}, s, layouts[1])
 -- }}}
 
 -- Menu {{{
@@ -342,6 +342,42 @@ require("vicious")
 -- }}}
 
 -- Rules {{{
+
+		floatingList = {
+			"Gimp",
+			"Pidgin",
+			"Wicd",
+			"Skype",
+			"recordMyDesktop"
+		}
+
+		tagWebList = {
+			"Firefox",
+			"Chromium",
+			"Uzbl"
+		}
+
+		tagMailList = {
+			"Thunderbird",
+			"Claws",
+			"Pidgin",
+			"Skype"
+		}
+
+		tagMediaList = {
+			"MPlayer",
+			"Epdfview",
+			"Zathura",
+			"sxiv",
+			"Libreoffice",
+			"Gnome-mplayer",
+			"Gimp"
+		}
+
+		tagTermList = {
+			"XTerm"
+		}
+
 	awful.rules.rules = {
 		-- All clients will match this rule.
 		{rule = {}, properties =
@@ -353,74 +389,16 @@ require("vicious")
 				keys = clientkeys
 			}
 		},
-		{rule = {class = "gimp"}, properties =
-			{
-				floating = true,
-				tag = tags[myscreen][4]
-			}
-		},
-		{rule = {class = "Firefox"}, properties =
-			{
-				tag = tags[myscreen][1]
-			}
-		},
-		{rule = {class = "Uzbl"}, properties =
-			{
-				tag = tags[myscreen][1],
-			}
-		},
-		{rule = {class = "Chromium"}, properties =
-			{
-				tag = tags[myscreen][1]
-			}
-		},
-		{rule = {class = "Thunderbird"}, properties =
-			{
-				tag = tags[myscreen][2]
-			}
-		},
-		{rule = {class = "Claws"}, properties =
-			{
-				tag = tags[myscreen][2]
-			}
-		},
-		{rule = {class = "Pidgin" }, properties =
-			{
-				floating = true,
-				--tag = tags[myscreen][2]
-			}
-		},
-		{rule = {class = "Wicd"}, properties =
-			{
-				floating = true
-			}
-		},
-		{rule = {class = "recordMyDesktop"}, properties =
-			{
-				floating = true
-			}
-		},
-		{rule = {class = "Skype"}, properties =
-			{
-				floating = true
-			}
-		},
-		{rule = {class = "Etude"}, properties =
-			{
-				tag = tags[myscreen][4]
-			}
-		},
-		{rule = {class = "Gvim"}, properties =
-			{
-				tag = tags[myscreen][3]
-			}
-		},
-		{ rule = { instance = "plugin-container" },	properties =
-			{
-				-- no tiling for i.e. youtube video fullscreen
-				floating = true
-			}
-		}
+
+		{ rule_any = { class = floatingList }, properties = { floating = true } },
+		-- no tiling for i.e. youtube video fullscreen
+		{ rule = { instance = "plugin-container" },	properties = { floating = true } },
+
+		{ rule_any = { class = tagTermList }, properties = { tag = tags[myscreen][1] } },
+		{ rule_any = { class = tagWebList }, properties = { tag = tags[myscreen][2] } },
+		{ rule_any = { class = tagMailList }, properties = { tag = tags[myscreen][3] } },
+		{ rule_any = { class = tagMediaList }, properties = { tag = tags[myscreen][4] } }
+
 	}
 -- }}}
 
