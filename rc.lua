@@ -20,7 +20,7 @@ require("vicious")
 	beautiful.init( awful.util.getdir("config") .. "/theme/theme.lua")
 
 	-- This is used as the default terminal and editor to run.
-	terminal = "xterm"
+	terminal = "urxvt"
 
 	-- Default modkey.
 	-- Mod4 is the key with a logo between Control and Alt.
@@ -42,7 +42,7 @@ require("vicious")
 -- Tags {{{
 	-- Define a tag table which hold all screen tags. We only have one screen.
 	tags = {}
-	tags[myscreen]=awful.tag({"term","web","mail","media","misc"}, s, layouts[1])
+	tags[myscreen]=awful.tag({"term","web","mail"}, s, layouts[1])
 -- }}}
 
 -- Menu {{{
@@ -351,6 +351,10 @@ require("vicious")
 			"recordMyDesktop"
 		}
 
+		tagTermList = {
+			"XTerm"
+		}
+
 		tagWebList = {
 			"Firefox",
 			"Chromium",
@@ -362,20 +366,6 @@ require("vicious")
 			"Claws",
 			"Pidgin",
 			"Skype"
-		}
-
-		tagMediaList = {
-			"MPlayer",
-			"Epdfview",
-			"Zathura",
-			"sxiv",
-			"Libreoffice",
-			"Gnome-mplayer",
-			"Gimp"
-		}
-
-		tagTermList = {
-			"XTerm"
 		}
 
 	awful.rules.rules = {
@@ -396,8 +386,7 @@ require("vicious")
 
 		{ rule_any = { class = tagTermList }, properties = { tag = tags[myscreen][1] } },
 		{ rule_any = { class = tagWebList }, properties = { tag = tags[myscreen][2] } },
-		{ rule_any = { class = tagMailList }, properties = { tag = tags[myscreen][3] } },
-		{ rule_any = { class = tagMediaList }, properties = { tag = tags[myscreen][4] } }
+		{ rule_any = { class = tagMailList }, properties = { tag = tags[myscreen][3] } }
 
 	}
 -- }}}
