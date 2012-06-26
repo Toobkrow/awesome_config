@@ -95,7 +95,21 @@ require("vicious")
 
 	-- Create a battery status widget
 	mybat = widget({type = "textbox"})
-	vicious.register(mybat, vicious.widgets.bat, "$2% $3", 10, "BAT1")
+	vicious.register(mybat, vicious.widgets.bat,
+		function (widget, args)
+			-- check if battery is in slot
+			if (args[2] == 0) then
+				return ''
+			else
+				return '[ Battery '.. args[1] .. ' ' .. args[2] .. '% ' .. args[3] .. ' ]'
+			end
+		end, 10, "BAT1")
+
+	-- Create two square brackets for tag list
+	mybracket1 = widget({type = "textbox"})
+	mybracket1.text = "["
+	mybracket2 = widget({type = "textbox"})
+	mybracket2.text = "] "
 
 	mytaglist = {}
 	mytaglist.buttons = awful.util.table.join(
@@ -144,7 +158,9 @@ require("vicious")
 	mywibox.widgets = {
 		--we divide the widgets in two parts to make the tasklist expand
 		{
+			mybracket1,
 			mytaglist,
+			mybracket2,
 			mypromptbox,
 			layout = awful.widget.layout.horizontal.leftright
 		},
