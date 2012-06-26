@@ -88,10 +88,12 @@ require("vicious")
 
 -- Widgets {{{
 	-- Create a textclock widget
-	mytextclock = awful.widget.textclock({align = "right"})
+	mytextclock = awful.widget.textclock({align = "right"}, "%H:%M")
+
 
 	-- Create a systray
 	mysystray = widget({type = "systray"})
+
 
 	-- Create a battery status widget
 	mybat = widget({type = "textbox"})
@@ -105,12 +107,15 @@ require("vicious")
 			end
 		end, 10, "BAT1")
 
+
 	-- Create two square brackets for tag list
 	mybracket1 = widget({type = "textbox"})
 	mybracket1.text = "["
 	mybracket2 = widget({type = "textbox"})
 	mybracket2.text = "] "
 
+
+	-- Create a taglist widget
 	mytaglist = {}
 	mytaglist.buttons = awful.util.table.join(
 		awful.button({}, 1, awful.tag.viewonly),
@@ -120,6 +125,10 @@ require("vicious")
 		awful.button({}, 4, awful.tag.viewnext),
 		awful.button({}, 5, awful.tag.viewprev)
 	)
+	mytaglist = awful.widget.taglist(myscreen, awful.widget.taglist.label.all, mytaglist.buttons)
+
+
+	-- Create a tasklist widget
 	mytasklist = {}
 	mytasklist.buttons = awful.util.table.join(
 		awful.button({}, 1, function (c)
@@ -135,22 +144,19 @@ require("vicious")
 				mymainmenu:toggle()
 		end)
 	)
--- }}}
-
--- Wibox {{{
-	-- Create a promptbox for each screen
-	mypromptbox = awful.widget.prompt({layout = awful.widget.layout.horizontal.leftright})
-
-	-- Create a taglist widget
-	mytaglist = awful.widget.taglist(myscreen, awful.widget.taglist.label.all, mytaglist.buttons)
-
-	-- Create a tasklist widget
 	mytasklist = awful.widget.tasklist(function(c)
 		--little wraparound to remove tasklist-icon
 		--	without modifying the original tasklist.lua
 		local tmptask = { awful.widget.tasklist.label.currenttags(c, myscreen) }
 		return tmptask[1], tmptask[2], tmptask[3], nil
 	end, mytasklist.buttons)
+
+	-- Create a promptbox for each screen
+	mypromptbox = awful.widget.prompt({layout = awful.widget.layout.horizontal.leftright})
+
+-- }}}
+
+-- Wibox {{{
 
 	mywibox = {}
 	mywibox = awful.wibox({position = "top", screen = myscreen})
