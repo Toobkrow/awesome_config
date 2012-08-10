@@ -20,7 +20,7 @@ require("vicious")
 	beautiful.init( awful.util.getdir("config") .. "/theme/theme.lua")
 
 	-- This is used as the default terminal and editor to run.
-	terminal = "urxvt"
+	terminal = "xterm"
 
 	-- Default modkey.
 	-- Mod4 is the key with a logo between Control and Alt.
@@ -108,13 +108,6 @@ require("vicious")
 		end, 10, "BAT1")
 
 
-	-- Create two square brackets for tag list
-	mybracket1 = widget({type = "textbox"})
-	mybracket1.text = "["
-	mybracket2 = widget({type = "textbox"})
-	mybracket2.text = "] "
-
-
 	-- Create a taglist widget
 	mytaglist = {}
 	mytaglist.buttons = awful.util.table.join(
@@ -164,9 +157,7 @@ require("vicious")
 	mywibox.widgets = {
 		--we divide the widgets in two parts to make the tasklist expand
 		{
-			mybracket1,
 			mytaglist,
-			mybracket2,
 			mypromptbox,
 			layout = awful.widget.layout.horizontal.leftright
 		},
@@ -366,15 +357,16 @@ require("vicious")
 -- Rules {{{
 
 		floatingList = {
-			"Gimp",
 			"Pidgin",
 			"Wicd",
 			"Skype",
+			"Pavucontrol",
 			"recordMyDesktop"
 		}
 
 		tagTermList = {
-			"XTerm"
+			"XTerm",
+			"URxvt"
 		}
 
 		tagWebList = {

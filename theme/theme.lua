@@ -1,21 +1,21 @@
 theme = {}
 
-theme.font          = "terminus 8"
+theme.font          = "terminus 10"
 
 theme.bg_normal     = "#000000"
+--theme.bg_focus      = "#99BBFF"
 theme.bg_focus      = "#000000"
 theme.bg_urgent     = "#aa0000"
 theme.bg_minimize   = "#aa0000"
 
-theme.fg_normal 	= "#708090"
-theme.fg_focus 		= "#96CEFF"
---theme.fg_focus 		= "#C1121C"
+theme.fg_normal 	= "#888888"
+theme.fg_focus 		= "#dd7500"
 theme.fg_urgent   = "#000000"
 theme.fg_minimize   = theme.fg_normal
 
 theme.border_width  = "1"
 theme.border_normal = theme.bg_normal
-theme.border_focus  = theme.fg_focus
+theme.border_focus  = theme.bg_focus
 theme.border_marked = theme.bg_urgent
 
 -- Display the taglist squares
@@ -24,9 +24,10 @@ theme.taglist_squares_unsel = "/usr/share/awesome/themes/default/taglist/squarew
 
 -- Variables set for theming the menu:
 theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
-theme.menu_border_width = "0"
+theme.menu_border_width = "1"
+theme.menu_border_color = theme.bg_focus
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "awsetbg -a '/home/daniel/.config/awesome/theme/wallpaper_sky.jpg'" }
+theme.wallpaper_cmd = { "awsetbg -a '/home/daniel/.config/awesome/theme/wallpaper.jpg'" }
 
 return theme
