@@ -11,7 +11,7 @@ require("naughty")
 require('freedesktop.utils')
 require('freedesktop.menu')
 --widget library
-require("vicious")
+--require("vicious")
 
 -- }}}
 
@@ -88,7 +88,7 @@ require("vicious")
 
 -- Widgets {{{
 	-- Create a textclock widget
-	mytextclock = awful.widget.textclock({align = "right"}, "%H:%M")
+	mytextclock = awful.widget.textclock({align = "right"}, "%H:%M, %b %d")
 
 
 	-- Create a systray
@@ -96,16 +96,16 @@ require("vicious")
 
 
 	-- Create a battery status widget
-	mybat = widget({type = "textbox"})
-	vicious.register(mybat, vicious.widgets.bat,
-		function (widget, args)
-			-- check if battery is in slot
-			if (args[2] == 0) then
-				return ''
-			else
-				return '[ Battery '.. args[1] .. ' ' .. args[2] .. '% ' .. args[3] .. ' ]'
-			end
-		end, 10, "BAT1")
+--	mybat = widget({type = "textbox"})
+--	vicious.register(mybat, vicious.widgets.bat,
+--		function (widget, args)
+--			-- check if battery is in slot
+--			if (args[2] == 0) then
+--				return ''
+--			else
+--				return 'battery['.. args[2] .. '% ' .. args[1] .. args[3] .. '] '
+--			end
+--		end, 10, "BAT1")
 
 
 	-- Create a taglist widget
@@ -152,7 +152,7 @@ require("vicious")
 -- Wibox {{{
 
 	mywibox = {}
-	mywibox = awful.wibox({position = "top", screen = myscreen})
+	mywibox = awful.wibox({position = "top", screen = myscreen, height=12})
 	-- Add widgets to the wibox - order matters
 	mywibox.widgets = {
 		--we divide the widgets in two parts to make the tasklist expand
@@ -162,7 +162,7 @@ require("vicious")
 			layout = awful.widget.layout.horizontal.leftright
 		},
 		mytextclock,
-		mybat,
+--		mybat,
 		mysystray,
 		mytasklist,
 		layout = awful.widget.layout.horizontal.rightleft
